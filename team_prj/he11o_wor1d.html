@@ -130,7 +130,7 @@
         editButton.addEventListener('click', () => {
             const editForm = document.createElement('div');
             editForm.innerHTML = `
-            <textarea placeholder="댓글 수정" rows="3"> </textarea>
+            <textarea placeholder="수정할 댓글" rows="3"></textarea>
             <input type="password" placeholder="비밀번호 입력">
             <button class="edit-confirm-button">수정 완료</button>`;
 
@@ -150,7 +150,23 @@
     });
 
         deleteButton.addEventListener('click', () => {
-            commentList.removeChild(newComment);
+            const passwordDiv = document.createElement('div');
+            passwordDiv.innerHTML = `
+                <input type="password" placeholder="비밀번호 입력">
+                <button class="delete-confirm-button">확인</button>
+            `;
+
+            deleteButton.parentNode.insertBefore(passwordDiv, deleteButton.nextSibling);
+
+            const deleteConfirmButton = passwordDiv.querySelector('.delete-confirm-button');
+            deleteConfirmButton.addEventListener('click', () => {
+                const inputPassword = passwordDiv.querySelector('input[type="password"]').value;
+                if (inputPassword === password) {
+                commentList.removeChild(newComment);
+                } else {
+                alert('비밀번호가 일치하지 않습니다.');
+                }
+            });
         });
     });
 });
