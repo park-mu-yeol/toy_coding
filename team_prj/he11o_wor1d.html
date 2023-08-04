@@ -142,7 +142,6 @@
         if (inputPassword === password) {
             const updatedContent = editForm.querySelector('textarea').value;
             contentParagraph.innerHTML = `<strong>${name}</strong>: ${updatedContent}`;
-            contentInput.value = updatedContent;
             editForm.remove();
         } else {
             alert('비밀번호가 일치하지 않습니다.');
